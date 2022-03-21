@@ -5,7 +5,7 @@ try {
 const { id } = req.params;
 const fileStringContent = await fs.readFile('talker.json', 'utf-8');
 const fileJSContent = JSON.parse(fileStringContent);
-const actualId = fileJSContent.find((talker) => talker.id == id);
+const actualId = fileJSContent.find((talker) => parseInt(talker.id) === parseInt(id));
 if (!actualId) {
   return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
 }
