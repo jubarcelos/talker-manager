@@ -6,9 +6,7 @@ const updateTalker = async (req, res) => {
   try {
     const fileContent = await fs.readFile('talker.json', 'utf8');
     const fileJSContent = JSON.parse(fileContent);
-    console.log(fileJSContent);
     const findTalker = fileJSContent.find((talker) => talker.id === +id).id;
-    console.log(id);
     const updatedTalkers = fileJSContent.filter((talker) => talker.id !== +id);
     const updatedTalker = { age, id: findTalker, name, talk };
     updatedTalkers.push(updatedTalker);
