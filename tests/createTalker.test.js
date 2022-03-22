@@ -10,6 +10,8 @@ const postTalkerMock = {
 };
 
 const url = 'http://localhost:3000';
+const DEZ = 10000;
+jest.setTimeout(DEZ);
 
 describe('4 - Crie o endpoint POST /talker', () => {
   beforeEach(() => {

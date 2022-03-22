@@ -1,14 +1,17 @@
 const fs = require('fs').promises;
 
 const setTalker = async (req, res) => {
-  const { id, name, age, talk } = req.body;
+  const { age, name, talk } = req.body;
   try {
     const fileContent = await fs.readFile('talker.json', 'utf8');
     const fileJSContent = JSON.parse(fileContent);
-    fileJSContent.push({ id, name, age, talk });
+    const lastId = fileJSContent.find((talker) => talker.id === (fileJSContent.length)).id;
+    // const Id = (fileJSContent[fileJSContent.length - 1]).id;
+    const actualId = lastId + 1;
+    fileJSContent.push({ age, id: actualId, name, talk });
     const fileJsonContent = JSON.stringify(fileJSContent);
-    fs.writeFile('talker.json', fileJsonContent);
-    return res.status(201).json(fileJSContent);
+    await fs.writeFile('talker.json', fileJsonContent);
+    return res.status(201).json(fileJSContent[fileJSContent.length - 1]);
   } catch (error) {
     console.error(error);
   }
