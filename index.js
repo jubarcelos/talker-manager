@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const getTalkers = require('./middlewares/AllTalkers');
+const getTalkers = require('./middlewares/ShowAllTalkers');
 const getTalkerById = require('./middlewares/TalkerById');
 const validatePassword = require('./middlewares/ValidatePassword');
 const validateEmail = require('./middlewares/ValidateEmail');
@@ -15,6 +15,7 @@ const { validateName,
 const addNewTalker = require('./middlewares/AddTalker');
 const updateTalker = require('./middlewares/UpdateTalker');
 const deleteTalker = require('./middlewares/DeleteTalker');
+const showTalker = require('./middlewares/ShowTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -23,6 +24,7 @@ const HTTP_OK_STATUS = 200;
 const PORT = '3000';
 
 app.get('/talker', getTalkers);
+app.get('/talker/search', validateToken, showTalker);
 app.get('/talker/:id', getTalkerById);
 app.post('/login', validateEmail, validatePassword, login);
 app.post('/talker', validateToken, validateName, validateAge,
