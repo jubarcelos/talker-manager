@@ -2,9 +2,7 @@ const fs = require('fs').promises;
 
 const showTalker = async (req, res) => {
   const { q } = req.query;
-  console.log('oi');
   try {
-    console.log(q);
     const fileStringContent = await fs.readFile('talker.json', 'utf-8');
     const fileJSContent = JSON.parse(fileStringContent);
     if (!q || q === '') {
