@@ -52,6 +52,7 @@ const validateWatchedAt = async (req, res, next) => {
   try {
     const { talk: { watchedAt } } = req.body;
     const validData = /^\d{2}\/\d{2}\/\d{4}$/;
+    // dica para uma validação simples de data: https://temptable.com.br/2015/10/validar-data-no-formato-ddmmaaaa.html
     if (!watchedAt) {
       return res.status(400).json({
         message: 'O campo "talk" é obrigatório e "watchedAt" e "rate" não podem ser vazios' });
