@@ -6,7 +6,6 @@ const setTalker = async (req, res) => {
     const fileContent = await fs.readFile('talker.json', 'utf8');
     const fileJSContent = JSON.parse(fileContent);
     const lastId = fileJSContent.find((talker) => talker.id === (fileJSContent.length)).id;
-    // const Id = (fileJSContent[fileJSContent.length - 1]).id;
     const actualId = lastId + 1;
     fileJSContent.push({ age, id: actualId, name, talk });
     const fileJsonContent = JSON.stringify(fileJSContent);
